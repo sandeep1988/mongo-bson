@@ -1,0 +1,1 @@
+text.extract! @product, :id, :name, :content
