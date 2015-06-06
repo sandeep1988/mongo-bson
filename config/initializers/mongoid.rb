@@ -1,9 +1,19 @@
 module Moped
   module BSON
     class ObjectId
-      def to_json(*args)
-        to_s.to_bson
-      end
+      alias :to_json :to_s
+      alias :as_json :to_s
     end
   end
 end
+
+module Mongoid
+  module Document
+    def serializable_hash(options = nil)
+      h = super(options)
+      h['id'] = h.delete('_id') if(h.has_key?('_id'))
+      h
+    end
+  end
+end
+

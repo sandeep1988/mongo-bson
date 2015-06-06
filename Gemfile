@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use SCSS for stylesheets
@@ -14,13 +12,17 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'mongoid'
 gem 'bson_ext'
 gem "bson", '~> 2.3.0'
-# gem "moped", github: "mongoid/moped"
+gem "moped"
 gem 'plist'
-gem 'rabl'
+gem 'devise'
+# gem 'rabl'
 gem 'oj'
-gem 'sinatra'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+# gem 'sinatra'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem "typus", github: "typus/typus"
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -30,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders', '~> 2.0'
 gem 'msgpack', '~> 0.4.5'
 gem 'mongo'
+gem 'mongo_mapper'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

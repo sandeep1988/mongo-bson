@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  resources :categories
+  devise_for :users
   resources :authors
   namespace :api do
     namespace :v1 do
+      resources :products
+    end
+     namespace :v2 do
       resources :products
     end
   end

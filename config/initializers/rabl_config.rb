@@ -1,3 +1,3 @@
-Rabl.configure do |config|
-  config.include_bson_root = false
-end
+# Rabl.configure do |config|
+#   config.include_bson_root = false
+# end

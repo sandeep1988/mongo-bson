@@ -1,20 +1,22 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json, :bson
+  respond_to :html, :xml, :json, :bson, :csv, :text
   # GET /products
   # GET /products.json
 #   before_filter :default_format_json
 # # Set format to xml unless client requires a specific format
 # # Works on Rails 3.0.9
 #   def default_format_json
-#     request.format = "json" unless params[:format]
+#     request.format = "bson" unless params[:format]
 #   end
 
   def index
+    debugger
     @products = Product.all
     respond_to do |format|
-      format.bson { render bson: @products }
       format.html # index.html.erb
+      format.bson { render json: @products }
+      format.csv { render json: @products }
       format.xml  { render xml: @products }
       format.json { render json: @products }
     end
@@ -24,9 +26,13 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    @products = @product.category
+    # doc = {:hello => "world"}
+    @product_bson = BSON::Document.new(@product.attributes)
+    @product_bson  = @product_bson.to_bson
     respond_to do |format|
-      format.bson { render bson: @product }
       format.html # index.html.erb
+      format.bson { render json: @product_bson }
       format.xml  { render xml: @product }
       format.json { render json: @product }
     end
@@ -88,6 +94,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :content)
+      params.require(:product).permit(:name, :content, :category_id)
     end
 end

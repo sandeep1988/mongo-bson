@@ -2,12 +2,12 @@ module Api
   module V1
     class ProductsController < ApplicationController
       
-    respond_to :html, :xml, :json
+    respond_to :html, :xml, :json, :bson
 
     before_filter :default_format
 
     def default_format
-     request.format = "xml" unless params[:format]
+     request.format = "json" unless params[:format]
     end
 
       def index

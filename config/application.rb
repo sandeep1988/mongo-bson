@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
+require 'csv'
 require "active_model/railtie"
 require "active_job/railtie"
 # require "active_record/railtie"
@@ -12,7 +13,7 @@ require "rails/test_unit/railtie"
 require "bson"
 require "json"
 require "moped"
-Moped::BSON = BSON
+# BSON=Moped::BSON
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
