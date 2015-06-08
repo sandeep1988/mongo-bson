@@ -23,15 +23,15 @@
   <%= f.label :category %><br />
   <%= f.collection_select :category_id, Category.all, :id, :name %>
 </div>
-<!-- <input type="text" class='datepicker' > -->
+<input type="text" class='datepicker' >
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
-// <script type="text/javascript">
-//   $(document).ready(function(){
-//     $('.datepicker').datepicker();
-//   });
-// </script>
+ <script type="text/javascript">
+   $(document).ready(function(){
+     $('.datepicker').datepicker();
+   });
+ </script>

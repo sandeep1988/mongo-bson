@@ -5,12 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.bson { render bson: @categories }
-      format.xml  { render xml: @categories }
-      format.json { render json: @categories }
-    end
+      respond_to :html, :json
   end
 
   # GET /categories/1

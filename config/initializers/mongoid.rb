@@ -17,3 +17,12 @@ module Mongoid
   end
 end
 
+
+module BSON
+  class Code
+    def to_s
+      inspect
+    end
+  end
+end
+

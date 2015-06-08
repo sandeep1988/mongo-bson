@@ -1,33 +1,35 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json, :bson, :csv, :text
+  respond_to :html, :json, :bson, :xml
   # GET /products
   # GET /products.json
-#   before_filter :default_format_json
+#   before_filter :default_format_bson
 # # Set format to xml unless client requires a specific format
 # # Works on Rails 3.0.9
-#   def default_format_json
+#   def default_format_bson
 #     request.format = "bson" unless params[:format]
 #   end
-
   def index
-    debugger
     @products = Product.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.bson { render json: @products }
-      format.csv { render json: @products }
-      format.xml  { render xml: @products }
-      format.json { render json: @products }
+      respond_to do |format|
+      @products_bson1 = []
+      @products_bson2 = []
+      @products.each do |pro|
+        @products_bson = BSON::Document.new(pro.attributes)
+          @products_bson1.push(@products_bson)
+          @products_bson2  = @products_bson1.to_bson
+          format.html # index.html.erb
+          format.bson { render json: @products_bson2 }
+          format.json { render json: @products }
+          format.xml  { render xml: @product }
     end
   end
+end
 
   # GET /products/1
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-    @products = @product.category
-    # doc = {:hello => "world"}
     @product_bson = BSON::Document.new(@product.attributes)
     @product_bson  = @product_bson.to_bson
     respond_to do |format|
