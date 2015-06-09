@@ -16,6 +16,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.content %></td>
+        <td><%= product.user_id %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,5 +27,8 @@
 
 <br>
 
-products_bson2 is => <%= @products_bson2.inspect %>
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path %> </br>
+<%= link_to 'test', testing_products_path %>
+<% if user_signed_in? %>
+<%= link_to 'user product list', user_product_list_products_path %> 
+<% end %>

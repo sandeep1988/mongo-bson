@@ -3,16 +3,11 @@ class Product
   field :name, :type => String
   field :content, :type => String
   field :category_id, type: Integer
+  field :user_id, type: Integer
   belongs_to :category
-
+  belongs_to :user
+  
   def self.red
     where(name: 'red')
   end
-
-  def to_json(options={})
-    #what to do here?
-    # options[:except] ||= :_id  #%w(_id)
-    super(options)
-  end
-
 end

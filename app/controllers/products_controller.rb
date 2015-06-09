@@ -21,9 +21,49 @@ class ProductsController < ApplicationController
           format.html # index.html.erb
           format.bson { render json: @products_bson2 }
           format.json { render json: @products }
-          format.xml  { render xml: @product }
+          format.xml  { render xml: @products }
     end
   end
+end
+
+def user_product_list
+  if user_signed_in? && !current_user.products.empty?
+    @current_user_products = current_user.products
+    respond_to do |format|
+      @current_user_bson1 = []
+      @current_user_bson2 = []
+      @current_user_products.each do |user_product|
+        @user_bson = BSON::Document.new(user_product.attributes)
+        @current_user_bson1.push(@user_bson)
+        @current_user_bson2 = @current_user_bson1.to_bson
+        format.html # index.html.erb
+          format.bson { render json: @current_user_bson2 }
+          format.json { render json: @current_user_products }
+          format.xml  { render xml: @current_user_products }
+        end
+    end
+  else
+      redirect_to products_path 
+  end
+end
+
+def testing
+  @product = Product.first
+  @product = @product.category
+  @product = @product.products
+  respond_to do |format|
+      @current_user_bson1 = []
+      @current_user_bson2 = []
+        @product.each do |user_product|
+        @user_bson = BSON::Document.new(user_product.attributes)
+        @current_user_bson1.push(@user_bson)
+        @current_user_bson2 = @current_user_bson1.to_bson
+        format.html # index.html.erb
+          format.bson { render json: @current_user_bson2 }
+          format.json { render json: @product }
+          format.xml  { render xml: @product }
+        end
+    end
 end
 
   # GET /products/1
@@ -53,6 +93,7 @@ end
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.user_id = current_user._id
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -96,6 +137,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :content, :category_id)
+      params.require(:product).permit(:user_id, :name, :content, :category_id)
     end
 end

@@ -12,6 +12,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'mongoid'
 gem 'bson_ext'
 gem "bson", '~> 2.3.0'
+gem 'mongoid_alize'
+gem 'mongoid_denormalize'
 gem "moped"
 gem 'plist'
 gem 'devise'

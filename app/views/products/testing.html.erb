@@ -1,0 +1,25 @@
+<h1>Listing Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Cat id</th>&nbsp;&nbsp;
+      <th>user id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.content %></td>
+        <td><%= product.category_id %></td>&nbsp;
+        &nbsp;&nbsp;
+        <td><%= product.user_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
