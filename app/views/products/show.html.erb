@@ -3,7 +3,10 @@
   <strong>Name:</strong>
   <%= @product.name %>
 </p>
-
+<p>
+  <strong>published_on:</strong>
+  <%= @product.published_on %>
+</p>
 
 <%= @product_bson.inspect %>
 <%= link_to 'Edit', edit_product_path(@product) %> |

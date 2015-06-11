@@ -23,8 +23,11 @@
   <%= f.label :category %><br />
   <%= f.collection_select :category_id, Category.all, :id, :name %>
 </div>
-<input type="text" class='datepicker' >
-
+<div class="field">
+    <%= f.label :published_on %><br />
+    <%= f.date_select :published_on %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

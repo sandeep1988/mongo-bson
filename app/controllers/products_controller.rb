@@ -9,8 +9,10 @@ class ProductsController < ApplicationController
 #   def default_format_bson
 #     request.format = "bson" unless params[:format]
 #   end
+
   def index
     @products = Product.all
+    # @product = Product.where(:created_at.lte => Date.today).group_by {|d| d.created_at.strftime("%d-%m-%y")}
       respond_to do |format|
       @products_bson1 = []
       @products_bson2 = []
@@ -137,6 +139,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:user_id, :name, :content, :category_id)
+      params.require(:product).permit(:user_id, :name, :content, :category_id, :published_on)
     end
 end
