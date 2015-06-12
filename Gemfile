@@ -25,7 +25,7 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 # gem 'sinatra'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem "typus", github: "typus/typus"
+# gem "typus", github: "typus/typus"
 gem 'activesupport-json_encoder', github: 'rails/activesupport-json_encoder'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
